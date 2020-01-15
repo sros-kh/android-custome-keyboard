@@ -2,6 +2,8 @@ package org.klsoft.keyboard;
 
 import android.util.Xml;
 
+import androidx.core.content.ContextCompat;
+
 import org.xmlpull.v1.XmlSerializer;
 
 import java.io.FileWriter;
@@ -49,10 +51,6 @@ public class Utils {
             }
 
             serializer.endDocument();
-
-            FileWriter fw = new FileWriter("xml/keyboard_en.xml");
-            fw.write(writer.toString());
-            fw.close();
 
             return writer.toString();
 
