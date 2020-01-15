@@ -4,19 +4,4 @@
         android:label="English (US)"
         android:imeSubtypeLocale="en_US"
         android:imeSubtypeMode="keyboard" />
-
-    <!--<subtype
-        android:label="@string/label_subtype_generic"
-        android:name="@string/display_name_english_keyboard_ime"
-        android:imeSubtypeLocale="en_US"
-        android:icon="@drawable/icon"
-        android:imeSubtypeMode="keyboard" />
-
-    <subtype
-        android:label="@string/label_subtype_generic"
-        android:name="@string/display_name_korea_keyboard_ime"
-        android:imeSubtypeLocale="ko_KR"
-        android:icon="@drawable/icon"
-        android:imeSubtypeMode="keyboard" />-->
-
 </input-method>

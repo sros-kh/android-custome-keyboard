@@ -1,11 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
-    android:keyWidth="10%p"
-    android:horizontalGap="0px"
-    android:verticalGap="0px"
-    android:keyHeight="60dp">
+package org.klsoft.keyboard;
 
-    <Row>
+import java.util.HashMap;
+import java.util.Map;
+
+public class Keys {
+
+    public static Map<String , String> krKeys(){
+        Map<String, String> keys = new HashMap<>();
+
+
+        return keys;
+    }
+
+    public static Map<String , String> enKeys(){
+        Map<String, String> keys = new HashMap<>();
+        keys.put("q", "113");
+        keys.put("w", "119");
+        keys.put("e", "101");
+        keys.put("r", "114");
+        keys.put("t", "116");
+        keys.put("y", "121");
+        keys.put("u", "117");
+        keys.put("i", "105");
+        keys.put("o", "111");
+        keys.put("p", "112");
+        keys.put("a", "97");
+        keys.put("s", "115");
+        keys.put("d", "100");
+        keys.put("f", "102");
+        keys.put("g", "103");
+        keys.put("h", "104");
+        keys.put("j", "106");
+        keys.put("k", "107");
+        keys.put("l", "108");
+        keys.put("z", "122");
+        keys.put("x", "120");
+        keys.put("c", "99");
+        keys.put("v", "118");
+        keys.put("b", "98");
+        keys.put("n", "110");
+        keys.put("m", "109");
+        keys.put(".", "46");
+
+        return keys;
+    }
+
+
+    /*<Row>
         <Key android:codes="113" android:keyLabel="q" android:keyEdgeFlags="left"/>
         <Key android:codes="119" android:keyLabel="w"/>
         <Key android:codes="101" android:keyLabel="e"/>
@@ -39,13 +80,5 @@
         <Key android:codes="109" android:keyLabel="m"/>
         <Key android:keyLabel="." android:codes="46"/>
         <Key android:codes="-5"  android:keyEdgeFlags="right" android:keyWidth="17%" android:keyIcon="@drawable/delete" />
-    </Row>
-    <Row android:rowEdgeFlags="bottom">
-        <Key android:codes="-52" android:keyLabel="123"    android:keyWidth="10%p"  android:keyEdgeFlags="left"/>
-        <Key android:codes="-51" android:keyIcon="@drawable/language"    android:keyWidth="10%p"/>
-        <Key android:codes="44"  android:keyLabel=","     android:keyWidth="10%p" />
-        <Key android:codes="47"  android:keyLabel="/"     android:keyWidth="10%p" />
-        <Key android:codes="32"  android:keyLabel="space" android:keyWidth="40%p" />
-        <Key android:codes="-4"  android:keyLabel="done"  android:keyWidth="20%p" android:keyEdgeFlags="right" />
-    </Row>
-</Keyboard>
+    </Row>*/
+}

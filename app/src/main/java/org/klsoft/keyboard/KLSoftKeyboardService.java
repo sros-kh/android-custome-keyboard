@@ -4,6 +4,7 @@ import android.inputmethodservice.InputMethodService;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
 import android.media.AudioManager;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputConnection;
@@ -11,19 +12,29 @@ import android.view.inputmethod.InputConnection;
 public class KLSoftKeyboardService extends InputMethodService implements KeyboardView.OnKeyboardActionListener {
 
     private KeyboardView keyboardView;
-    private Keyboard engKeyboard;
-    private Keyboard krKeyboard;
+    private Keyboard keyboardEn;
+    private Keyboard keyboardKr;
+    private Keyboard keyboardKrShift;
+    private Keyboard keyboardNo;
+    private Keyboard keyboardKrNo;
 
-    private boolean isEn = false;
-    private boolean isCaps = false;
+    private boolean isEn = true;
+    private boolean isNo;
+    private boolean isCaps;
+    private boolean isShift;
+
 
     @Override
     public View onCreateInputView() {
-        engKeyboard = new Keyboard(this, R.xml.keyboard_en);
-        krKeyboard = new Keyboard(this, R.xml.keyboard_kr);
+
+        keyboardEn = new Keyboard(this, R.xml.keyboard_en);
+        keyboardKr = new Keyboard(this, R.xml.keyboard_kr);
+        keyboardKrShift = new Keyboard(this, R.xml.keyboard_kr_shift);
+        keyboardNo = new Keyboard(this, R.xml.keyboard_no_en);
+        keyboardKrNo = new Keyboard(this, R.xml.keyboard_no_kr);
 
         keyboardView = (KeyboardView) getLayoutInflater().inflate(R.layout.keyboard, null);
-        keyboardView.setKeyboard(engKeyboard);
+        keyboardView.setKeyboard(keyboardEn);
         keyboardView.setOnKeyboardActionListener(this);
         return keyboardView;
     }
@@ -44,32 +55,39 @@ public class KLSoftKeyboardService extends InputMethodService implements Keyboar
         InputConnection ic = getCurrentInputConnection();
         playClick(primaryCode);
 
+
         switch (primaryCode) {
+
             case Keyboard.KEYCODE_DELETE:
                 ic.deleteSurroundingText(1, 0);
                 break;
+
             case Keyboard.KEYCODE_SHIFT:
                 isCaps = !isCaps;
-                engKeyboard.setShifted(isCaps);
-                krKeyboard.setShifted(isCaps);
+                if (isEn)
+                    keyboardEn.setShifted(isCaps);
+                else {
+                    keyboardView.setKeyboard(isNo ? keyboardKrNo : !isShift ? keyboardKrShift : keyboardKr);
+                    isShift = !isShift;
+                }
                 keyboardView.invalidateAllKeys();
                 break;
+
             case Keyboard.KEYCODE_DONE:
                 ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
                 break;
+
             case -51:
-
-                if (isEn) {
-                    keyboardView.setKeyboard(engKeyboard);
-                    keyboardView.setOnKeyboardActionListener(this);
-                    isEn = false;
-                } else {
-                    keyboardView.setKeyboard(krKeyboard);
-                    keyboardView.setOnKeyboardActionListener(this);
-                    isEn = true;
-                }
-
+                keyboardView.setKeyboard(isEn ? keyboardKr : keyboardEn);
+                isEn = !isEn;
+                isNo = false;
                 break;
+
+            case -52:
+                keyboardView.setKeyboard(!isNo ? isEn ? keyboardNo : keyboardKrNo : isEn ? keyboardEn : keyboardKr);
+                isNo = !isNo;
+                break;
+
             default:
                 char code = (char) primaryCode;
                 if (Character.isLetter(code) && isCaps)

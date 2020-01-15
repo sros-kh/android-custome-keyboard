@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="KLSoftKeyboard"></declare-styleable>
+    <declare-styleable name="Keyboard_keyWidth"></declare-styleable>
+    <declare-styleable name="Keyboard_keyHeight"></declare-styleable>
+    <declare-styleable name="Keyboard_horizontalGap"></declare-styleable>
+    <declare-styleable name="Keyboard_verticalGap"></declare-styleable>
+    <declare-styleable name="Keyboard_Row"></declare-styleable>
+    <declare-styleable name="Keyboard_Row_rowEdgeFlags"></declare-styleable>
+    <declare-styleable name="Keyboard_Row_keyboardMode"></declare-styleable>
+    <declare-styleable name="Keyboard_Key"></declare-styleable>
+    <declare-styleable name="Keyboard_Key_codes"></declare-styleable>
+    <declare-styleable name="Keyboard_Key_iconPreview"></declare-styleable>
+    <declare-styleable name="Keyboard_Key_popupCharacters"></declare-styleable>
+    <declare-styleable name="Keyboard_Key_popupKeyboard"></declare-styleable>
+    <declare-styleable name="Keyboard_Key_isRepeatable"></declare-styleable>
+    <declare-styleable name="Keyboard_Key_isModifier"></declare-styleable>
+    <declare-styleable name="Keyboard_Key_isSticky"></declare-styleable>
+    <declare-styleable name="Keyboard_Key_keyEdgeFlags"></declare-styleable>
+    <declare-styleable name="Keyboard_Key_keyIcon"></declare-styleable>
+    <declare-styleable name="Keyboard_Key_keyLabel"></declare-styleable>
+    <declare-styleable name="Keyboard_Key_keyOutputText"></declare-styleable>
+    <declare-styleable name="KLSoftKeyboardView"></declare-styleable>
+    <declare-styleable name="KeyboardView_keyBackground"></declare-styleable>
+    <declare-styleable name="KeyboardView_verticalCorrection"></declare-styleable>
+    <declare-styleable name="KeyboardView_keyPreviewLayout"></declare-styleable>
+    <declare-styleable name="KeyboardView_keyPreviewOffset"></declare-styleable>
+    <declare-styleable name="KeyboardView_keyPreviewHeight"></declare-styleable>
+    <declare-styleable name="KeyboardView_keyTextSize"></declare-styleable>
+    <declare-styleable name="KeyboardView_keyTextColor"></declare-styleable>
+    <declare-styleable name="KeyboardView_labelTextSize"></declare-styleable>
+    <declare-styleable name="KeyboardView_popupLayout"></declare-styleable>
+    <declare-styleable name="KeyboardView_shadowColor"></declare-styleable>
+    <attr name="state_long_pressable" />
+    <attr name="keyboardViewStyle" />
+</resources>

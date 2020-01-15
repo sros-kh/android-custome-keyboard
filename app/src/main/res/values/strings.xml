@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">KL Soft Keyboard</string>
-    <string name="display_name_english_keyboard_ime">English</string>
-    <string name="display_name_korea_keyboard_ime">Korea</string>
+    <string name="display_name_english_keyboard_ime" translatable="false">English</string>
+    <string name="display_name_korea_keyboard_ime" translatable="false">Korea</string>
     <string name="label_subtype_generic">%s</string>
 </resources>

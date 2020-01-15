@@ -6,16 +6,16 @@
     android:keyHeight="60dp">
 
     <Row>
-        <Key android:codes="0x3142"  android:keyLabel="ㅂ" android:keyEdgeFlags="left"/>
-        <Key android:codes="0x3148"  android:keyLabel="ㅈ" />
-        <Key android:codes="0x3137"  android:keyLabel="ㄷ" />
-        <Key android:codes="0x3131"  android:keyLabel="ㄱ" />
-        <Key android:codes="0x3145"  android:keyLabel="ㅅ" />
+        <Key android:codes="0x3143"  android:keyLabel="ㅃ" android:keyEdgeFlags="left"/>
+        <Key android:codes="0x3149"  android:keyLabel="ㅉ" />
+        <Key android:codes="0x3138"  android:keyLabel="ㄸ" />
+        <Key android:codes="0x3132"  android:keyLabel="ㄲ" />
+        <Key android:codes="0x3146"  android:keyLabel="ㅆ" />
         <Key android:codes="0x315b"  android:keyLabel="ㅛ" />
         <Key android:codes="0x3155"  android:keyLabel="ㅕ" />
         <Key android:codes="0x3151"  android:keyLabel="ㅑ" />
-        <Key android:codes="0x3150"  android:keyLabel="ㅐ" />
-        <Key android:codes="0x3154"  android:keyLabel="ㅔ" android:keyEdgeFlags="right"/>
+        <Key android:codes="0x3152"  android:keyLabel="ㅒ" />
+        <Key android:codes="0x3156"  android:keyLabel="ㅖ" android:keyEdgeFlags="right"/>
     </Row>
     <Row>
         <Key android:codes="0x3141"  android:keyLabel="ㅁ" android:keyEdgeFlags="left"  android:horizontalGap="5%" />
