@@ -1,7 +1,6 @@
 package org.klsoft.keyboard;
 
 import android.inputmethodservice.InputMethodService;
-import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
 import android.media.AudioManager;
 import android.view.KeyEvent;
@@ -11,27 +10,29 @@ import android.view.inputmethod.InputConnection;
 public class KLSoftKeyboardService extends InputMethodService implements KeyboardView.OnKeyboardActionListener {
 
     private KeyboardView keyboardView;
-    private Keyboard keyboardEn;
-    private Keyboard keyboardKr;
-    private Keyboard keyboardKrShift;
-    private Keyboard keyboardNo;
-    private Keyboard keyboardKrNo;
+    private KLSoftKeyboard keyboardEn;
+    private KLSoftKeyboard keyboardKr;
+    private KLSoftKeyboard keyboardKrShift;
+    private KLSoftKeyboard keyboardNo;
+    private KLSoftKeyboard keyboardKrNo;
 
     private boolean isEn = true;
     private boolean isNo;
     private boolean isCaps;
     private boolean isShift;
 
+    public void initializeKeyboards() {
+        keyboardEn = new KLSoftKeyboard(this, R.xml.keyboard_en);
+        keyboardKr = new KLSoftKeyboard(this, R.xml.keyboard_kr);
+        keyboardKrShift = new KLSoftKeyboard(this, R.xml.keyboard_kr_shift);
+        keyboardNo = new KLSoftKeyboard(this, R.xml.keyboard_no_en);
+        keyboardKrNo = new KLSoftKeyboard(this, R.xml.keyboard_no_kr);
+    }
+
 
     @Override
     public View onCreateInputView() {
-
-        keyboardEn = new Keyboard(this, R.xml.keyboard_en);
-        keyboardKr = new Keyboard(this, R.xml.keyboard_kr);
-        keyboardKrShift = new Keyboard(this, R.xml.keyboard_kr_shift);
-        keyboardNo = new Keyboard(this, R.xml.keyboard_no_en);
-        keyboardKrNo = new Keyboard(this, R.xml.keyboard_no_kr);
-
+        initializeKeyboards();
         keyboardView = (KeyboardView) getLayoutInflater().inflate(R.layout.keyboard, null);
         keyboardView.setKeyboard(keyboardEn);
         keyboardView.setOnKeyboardActionListener(this);
@@ -57,11 +58,11 @@ public class KLSoftKeyboardService extends InputMethodService implements Keyboar
 
         switch (primaryCode) {
 
-            case Keyboard.KEYCODE_DELETE:
+            case KLSoftKeyboard.KEYCODE_DELETE:
                 ic.deleteSurroundingText(1, 0);
                 break;
 
-            case Keyboard.KEYCODE_SHIFT:
+            case KLSoftKeyboard.KEYCODE_SHIFT:
                 isCaps = !isCaps;
                 if (isEn)
                     keyboardEn.setShifted(isCaps);
@@ -72,7 +73,7 @@ public class KLSoftKeyboardService extends InputMethodService implements Keyboar
                 keyboardView.invalidateAllKeys();
                 break;
 
-            case Keyboard.KEYCODE_DONE:
+            case KLSoftKeyboard.KEYCODE_DONE:
                 ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
                 break;
 
@@ -127,11 +128,11 @@ public class KLSoftKeyboardService extends InputMethodService implements Keyboar
             case 32:
                 am.playSoundEffect(AudioManager.FX_KEYPRESS_SPACEBAR);
                 break;
-            case Keyboard.KEYCODE_DONE:
+            case KLSoftKeyboard.KEYCODE_DONE:
             case 10:
                 am.playSoundEffect(AudioManager.FX_KEYPRESS_RETURN);
                 break;
-            case Keyboard.KEYCODE_DELETE:
+            case KLSoftKeyboard.KEYCODE_DELETE:
                 am.playSoundEffect(AudioManager.FX_KEYPRESS_DELETE);
                 break;
             default:
