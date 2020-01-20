@@ -38,14 +38,15 @@
         <Key android:codes="110" android:keyLabel="n"/>
         <Key android:codes="109" android:keyLabel="m"/>
         <Key android:keyLabel="." android:codes="46"/>
-        <Key android:codes="-5"  android:keyEdgeFlags="right" android:keyWidth="17%" android:keyIcon="@drawable/delete" />
+        <Key android:codes="-5"  android:keyEdgeFlags="right" android:keyWidth="17%" android:keyIcon="@drawable/icon_delete_key" />
     </Row>
     <Row android:rowEdgeFlags="bottom">
-        <Key android:codes="-52" android:keyLabel="123"    android:keyWidth="10%p"  android:keyEdgeFlags="left"/>
-        <Key android:codes="-51" android:keyIcon="@drawable/language"    android:keyWidth="10%p"/>
+        <Key android:codes="-52" android:keyLabel="..."    android:keyWidth="15%p"  android:keyEdgeFlags="left"/>
+        <Key android:codes="-51" android:keyIcon="@drawable/icon_language_key"    android:keyWidth="10%p"/>
         <Key android:codes="44"  android:keyLabel=","     android:keyWidth="10%p" />
+        <Key android:codes="32"  android:keyLabel="____" android:keyWidth="30%p" />
+        <Key android:keyWidth="10%p" android:codes="64" android:keyLabel="\@"/>
         <Key android:codes="47"  android:keyLabel="/"     android:keyWidth="10%p" />
-        <Key android:codes="32"  android:keyLabel="space" android:keyWidth="40%p" />
-        <Key android:codes="-4"  android:keyLabel="done"  android:keyWidth="20%p" android:keyEdgeFlags="right" />
+        <Key android:codes="-4"  android:keyIcon="@drawable/icon_enter_key"  android:keyWidth="15%p" android:keyEdgeFlags="right" />
     </Row>
 </Keyboard>

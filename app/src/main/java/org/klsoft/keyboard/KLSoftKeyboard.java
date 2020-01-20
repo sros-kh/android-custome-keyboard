@@ -29,65 +29,58 @@ public class KLSoftKeyboard extends Keyboard {
 
         KLSoftKey(Resources res, Keyboard.Row parent, int x, int y, XmlResourceParser parser) {
 
-            super(parent);
+//            super(parent);
+            super(res, parent, x ,y , parser);
 
-            /*this.x = x;
-            this.y = y;
-
-            TypedArray a = res.obtainAttributes(Xml.asAttributeSet(parser),
-                    R.styleable.Keyboard);
-
-            width = getDimensionOrFraction(a,
-                    R.styleable.Keyboard_keyWidth, parent.defaultWidth, parent.defaultWidth);
-            height = getDimensionOrFraction(a,
-                    R.styleable.Keyboard_keyHeight, parent.defaultHeight * 4, parent.defaultHeight);
-            gap = getDimensionOrFraction(a,
-                    R.styleable.Keyboard_horizontalGap, 0, parent.defaultHorizontalGap);
-            a.recycle();
-            a = res.obtainAttributes(Xml.asAttributeSet(parser),
-                    R.styleable.Keyboard_Key);
-            this.x += gap;
-            TypedValue codesValue = new TypedValue();
-            a.getValue(R.styleable.Keyboard_Key_codes,
-                    codesValue);
-            if (codesValue.type == TypedValue.TYPE_INT_DEC
-                    || codesValue.type == TypedValue.TYPE_INT_HEX) {
-                codes = new int[] { codesValue.data };
-            } else if (codesValue.type == TypedValue.TYPE_STRING) {
-                codes = parseCSV(codesValue.string.toString());
-            }
-
-            iconPreview = a.getDrawable(R.styleable.Keyboard_Key_iconPreview);
-            if (iconPreview != null) {
-                iconPreview.setBounds(0, 0, iconPreview.getIntrinsicWidth(),
-                        iconPreview.getIntrinsicHeight());
-            }
-            popupCharacters = a.getText(
-                    R.styleable.Keyboard_Key_popupCharacters);
-            popupResId = a.getResourceId(
-                    R.styleable.Keyboard_Key_popupKeyboard, 0);
-            repeatable = a.getBoolean(
-                    R.styleable.Keyboard_Key_isRepeatable, false);
-            modifier = a.getBoolean(
-                    R.styleable.Keyboard_Key_isModifier, false);
-            sticky = a.getBoolean(
-                    R.styleable.Keyboard_Key_isSticky, false);
-            edgeFlags = a.getInt(R.styleable.Keyboard_Key_keyEdgeFlags, 0);
-            edgeFlags |= parent.rowEdgeFlags;
-
-            icon = a.getDrawable(
-                    R.styleable.Keyboard_Key_keyIcon);
-            if (icon != null) {
-                icon.setBounds(0, 0, icon.getIntrinsicWidth(), icon.getIntrinsicHeight());
-            }
-            label = a.getText(R.styleable.Keyboard_Key_keyLabel);
-            text = a.getText(R.styleable.Keyboard_Key_keyOutputText);
-
-            if (codes == null && !TextUtils.isEmpty(label)) {
-                codes = new int[] { label.charAt(0) };
-            }
-            a.recycle();*/
-
+//            this.x = x;
+//            this.y = y;
+//
+//            TypedArray a = res.obtainAttributes(Xml.asAttributeSet(parser), R.styleable.Keyboard);
+//
+//            width = getDimensionOrFraction(a, R.styleable.Keyboard_keyWidth, parent.defaultWidth, parent.defaultWidth);
+//            height = getDimensionOrFraction(a, R.styleable.Keyboard_keyHeight, parent.defaultHeight * 4, parent.defaultHeight);
+//            gap = getDimensionOrFraction(a, R.styleable.Keyboard_horizontalGap, 0, parent.defaultHorizontalGap);
+//
+//            a.recycle();
+//            a = res.obtainAttributes(Xml.asAttributeSet(parser), R.styleable.Keyboard_Key);
+//            this.x += gap;
+//
+//            TypedValue codesValue = new TypedValue();
+//            a.getValue(R.styleable.Keyboard_Key_codes, codesValue);
+//
+//            if (codesValue.type == TypedValue.TYPE_INT_DEC || codesValue.type == TypedValue.TYPE_INT_HEX) {
+//                codes = new int[] { codesValue.data };
+//            } else if (codesValue.type == TypedValue.TYPE_STRING) {
+//                codes = parseCSV(codesValue.string.toString());
+//            }
+//
+//            iconPreview = a.getDrawable(R.styleable.Keyboard_Key_iconPreview);
+//            if (iconPreview != null) {
+//                iconPreview.setBounds(0, 0, iconPreview.getIntrinsicWidth(), iconPreview.getIntrinsicHeight());
+//            }
+//
+//            popupCharacters = a.getText(R.styleable.Keyboard_Key_popupCharacters);
+//            popupResId = a.getResourceId(R.styleable.Keyboard_Key_popupKeyboard, 0);
+//            repeatable = a.getBoolean(R.styleable.Keyboard_Key_isRepeatable, false);
+//            modifier = a.getBoolean(R.styleable.Keyboard_Key_isModifier, false);
+//            sticky = a.getBoolean(R.styleable.Keyboard_Key_isSticky, false);
+//            edgeFlags = a.getInt(R.styleable.Keyboard_Key_keyEdgeFlags, 0);
+//            edgeFlags |= parent.rowEdgeFlags;
+//
+//            icon = a.getDrawable(R.styleable.Keyboard_Key_keyIcon);
+//
+//            if (icon != null) {
+//                icon.setBounds(0, 0, icon.getIntrinsicWidth(), icon.getIntrinsicHeight());
+//            }
+//
+//            label = a.getText(R.styleable.Keyboard_Key_keyLabel);
+//            text = a.getText(R.styleable.Keyboard_Key_keyOutputText);
+//
+//            if (codes == null && !TextUtils.isEmpty(label)) {
+//                codes = new int[] { label.charAt(0) };
+//            }
+//
+//            a.recycle();
         }
 
         @Override

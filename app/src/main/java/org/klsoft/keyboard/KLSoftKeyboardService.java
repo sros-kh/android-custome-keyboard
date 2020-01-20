@@ -10,25 +10,20 @@ import android.view.inputmethod.InputConnection;
 public class KLSoftKeyboardService extends InputMethodService implements KeyboardView.OnKeyboardActionListener {
 
     private KeyboardView keyboardView;
+
     private KLSoftKeyboard keyboardEn;
+
     private KLSoftKeyboard keyboardKr;
     private KLSoftKeyboard keyboardKrShift;
+
     private KLSoftKeyboard keyboardNo;
-    private KLSoftKeyboard keyboardKrNo;
+    private KLSoftKeyboard keyboardNoShift;
 
     private boolean isEn = true;
     private boolean isNo;
-    private boolean isCaps;
     private boolean isShift;
-
-    public void initializeKeyboards() {
-        keyboardEn = new KLSoftKeyboard(this, R.xml.keyboard_en);
-        keyboardKr = new KLSoftKeyboard(this, R.xml.keyboard_kr);
-        keyboardKrShift = new KLSoftKeyboard(this, R.xml.keyboard_kr_shift);
-        keyboardNo = new KLSoftKeyboard(this, R.xml.keyboard_no_en);
-        keyboardKrNo = new KLSoftKeyboard(this, R.xml.keyboard_no_kr);
-    }
-
+    private boolean isNoShift;
+    private boolean isCaps;
 
     @Override
     public View onCreateInputView() {
@@ -40,21 +35,10 @@ public class KLSoftKeyboardService extends InputMethodService implements Keyboar
     }
 
     @Override
-    public void onPress(int primaryCode) {
-
-    }
-
-    @Override
-    public void onRelease(int primaryCode) {
-
-    }
-
-    @Override
     public void onKey(int primaryCode, int[] keyCodes) {
 
         InputConnection ic = getCurrentInputConnection();
         playClick(primaryCode);
-
 
         switch (primaryCode) {
 
@@ -63,13 +47,23 @@ public class KLSoftKeyboardService extends InputMethodService implements Keyboar
                 break;
 
             case KLSoftKeyboard.KEYCODE_SHIFT:
-                isCaps = !isCaps;
-                if (isEn)
-                    keyboardEn.setShifted(isCaps);
-                else {
-                    keyboardView.setKeyboard(isNo ? keyboardKrNo : !isShift ? keyboardKrShift : keyboardKr);
+
+                if (isEn) {
+                    if (isNo) {
+                        keyboardView.setKeyboard(isNoShift ? keyboardNo : keyboardNoShift);
+                        isNoShift =! isNoShift;
+                    } else {
+                        isCaps = !isCaps;
+                        keyboardEn.setShifted(isCaps);
+                    }
+                } else {
+                    keyboardView.setKeyboard(isNo ? isNoShift ? keyboardNo : keyboardNoShift :
+                            !isShift ? keyboardKrShift : keyboardKr);
                     isShift = !isShift;
+                    isNoShift = !isNoShift;
                 }
+
+
                 keyboardView.invalidateAllKeys();
                 break;
 
@@ -77,14 +71,17 @@ public class KLSoftKeyboardService extends InputMethodService implements Keyboar
                 ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
                 break;
 
-            case -51:
+            case -51: //switch icon_language_key
                 keyboardView.setKeyboard(isEn ? keyboardKr : keyboardEn);
                 isEn = !isEn;
                 isNo = false;
+                isShift = false;
+                isCaps = false;
+                isNoShift =false;
                 break;
 
-            case -52:
-                keyboardView.setKeyboard(!isNo ? isEn ? keyboardNo : keyboardKrNo : isEn ? keyboardEn : keyboardKr);
+            case -52: //switch keyboard number
+                keyboardView.setKeyboard(!isNo ? keyboardNo : isEn ? keyboardEn : keyboardKr);
                 isNo = !isNo;
                 break;
 
@@ -94,6 +91,16 @@ public class KLSoftKeyboardService extends InputMethodService implements Keyboar
                     code = Character.toUpperCase(code);
                 ic.commitText(String.valueOf(code), 1);
         }
+    }
+
+    @Override
+    public void onPress(int primaryCode) {
+
+    }
+
+    @Override
+    public void onRelease(int primaryCode) {
+
     }
 
     @Override
@@ -120,6 +127,17 @@ public class KLSoftKeyboardService extends InputMethodService implements Keyboar
     public void swipeUp() {
 
     }
+
+    public void initializeKeyboards() {
+        keyboardEn = new KLSoftKeyboard(this, R.xml.keyboard_en);
+
+        keyboardKr = new KLSoftKeyboard(this, R.xml.keyboard_kr);
+        keyboardKrShift = new KLSoftKeyboard(this, R.xml.keyboard_kr_shift);
+
+        keyboardNo = new KLSoftKeyboard(this, R.xml.keyboard_no);
+        keyboardNoShift = new KLSoftKeyboard(this, R.xml.keyboard_no_shift);
+    }
+
 
     private void playClick(int i) {
 
