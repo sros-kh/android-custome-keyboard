@@ -1,6 +1,7 @@
 package org.klsoft.keyboard;
 
 import android.inputmethodservice.InputMethodService;
+import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
 import android.media.AudioManager;
 import android.view.KeyEvent;
@@ -10,14 +11,11 @@ import android.view.inputmethod.InputConnection;
 public class KLSoftKeyboardService extends InputMethodService implements KeyboardView.OnKeyboardActionListener {
 
     private KeyboardView keyboardView;
-
-    private KLSoftKeyboard keyboardEn;
-
-    private KLSoftKeyboard keyboardKr;
-    private KLSoftKeyboard keyboardKrShift;
-
-    private KLSoftKeyboard keyboardNo;
-    private KLSoftKeyboard keyboardNoShift;
+    private Keyboard keyboardEn;
+    private Keyboard keyboardKr;
+    private Keyboard keyboardKrShift;
+    private Keyboard keyboardNo;
+    private Keyboard keyboardNoShift;
 
     private boolean isEn = true;
     private boolean isNo;
@@ -36,22 +34,21 @@ public class KLSoftKeyboardService extends InputMethodService implements Keyboar
 
     @Override
     public void onKey(int primaryCode, int[] keyCodes) {
-
         InputConnection ic = getCurrentInputConnection();
         playClick(primaryCode);
 
         switch (primaryCode) {
 
-            case KLSoftKeyboard.KEYCODE_DELETE:
+            case Keyboard.KEYCODE_DELETE:
                 ic.deleteSurroundingText(1, 0);
                 break;
 
-            case KLSoftKeyboard.KEYCODE_SHIFT:
+            case Keyboard.KEYCODE_SHIFT:
 
                 if (isEn) {
                     if (isNo) {
                         keyboardView.setKeyboard(isNoShift ? keyboardNo : keyboardNoShift);
-                        isNoShift =! isNoShift;
+                        isNoShift = !isNoShift;
                     } else {
                         isCaps = !isCaps;
                         keyboardEn.setShifted(isCaps);
@@ -63,11 +60,10 @@ public class KLSoftKeyboardService extends InputMethodService implements Keyboar
                     isNoShift = !isNoShift;
                 }
 
-
                 keyboardView.invalidateAllKeys();
                 break;
 
-            case KLSoftKeyboard.KEYCODE_DONE:
+            case Keyboard.KEYCODE_DONE:
                 ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
                 break;
 
@@ -77,10 +73,10 @@ public class KLSoftKeyboardService extends InputMethodService implements Keyboar
                 isNo = false;
                 isShift = false;
                 isCaps = false;
-                isNoShift =false;
+                isNoShift = false;
                 break;
 
-            case -52: //switch keyboard number
+            case -52: //switch keyboard
                 keyboardView.setKeyboard(!isNo ? keyboardNo : isEn ? keyboardEn : keyboardKr);
                 isNo = !isNo;
                 break;
@@ -129,13 +125,11 @@ public class KLSoftKeyboardService extends InputMethodService implements Keyboar
     }
 
     public void initializeKeyboards() {
-        keyboardEn = new KLSoftKeyboard(this, R.xml.keyboard_en);
-
-        keyboardKr = new KLSoftKeyboard(this, R.xml.keyboard_kr);
-        keyboardKrShift = new KLSoftKeyboard(this, R.xml.keyboard_kr_shift);
-
-        keyboardNo = new KLSoftKeyboard(this, R.xml.keyboard_no);
-        keyboardNoShift = new KLSoftKeyboard(this, R.xml.keyboard_no_shift);
+        keyboardEn = new Keyboard(this, R.xml.keyboard_en);
+        keyboardKr = new Keyboard(this, R.xml.keyboard_kr);
+        keyboardKrShift = new Keyboard(this, R.xml.keyboard_kr_shift);
+        keyboardNo = new Keyboard(this, R.xml.keyboard_no);
+        keyboardNoShift = new Keyboard(this, R.xml.keyboard_no_shift);
     }
 
 
@@ -146,11 +140,11 @@ public class KLSoftKeyboardService extends InputMethodService implements Keyboar
             case 32:
                 am.playSoundEffect(AudioManager.FX_KEYPRESS_SPACEBAR);
                 break;
-            case KLSoftKeyboard.KEYCODE_DONE:
+            case Keyboard.KEYCODE_DONE:
             case 10:
                 am.playSoundEffect(AudioManager.FX_KEYPRESS_RETURN);
                 break;
-            case KLSoftKeyboard.KEYCODE_DELETE:
+            case Keyboard.KEYCODE_DELETE:
                 am.playSoundEffect(AudioManager.FX_KEYPRESS_DELETE);
                 break;
             default:
