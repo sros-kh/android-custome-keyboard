@@ -1,5 +1,6 @@
 package org.klsoft.keyboard;
 
+import android.util.Log;
 import android.util.Xml;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -34,6 +35,7 @@ public class ExampleInstrumentedTest {
             XmlSerializer x = Xml.newSerializer();
             StringWriter writer = new StringWriter();
             x.setOutput(writer);
+            x.setFeature("http://xmlpull.org/v1/doc/features.html#indent-output", true);
 
             x.startDocument("UTF-8", true);
             x.startTag(null, "Keyboard");
@@ -136,7 +138,9 @@ public class ExampleInstrumentedTest {
 
             x.endDocument();
             x.flush();
-            System.out.println(writer.toString());
+
+            Log.i("====================Random Keyboard XML==================\n",
+                    writer.toString());
 
         } catch (IOException e) {
             e.printStackTrace();
