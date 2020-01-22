@@ -1,10 +1,8 @@
 package org.klsoft.keyboard;
 
-import android.content.Context;
 import android.util.Xml;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,12 +21,10 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
-    @Test
-    public void useAppContext() {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-    }
+
+//    private char[] keySequence = "abcdefghijklmnopqrstuvwxyz.".toCharArray();
+    private char[] keySequence = "ㄱㄴㄷㄹㅁㅂㅅㅈㅊㅋㅌㅍㅎㅇㅏㅑㅓㅕㅗㅛㅜㅠㅡㅣㅐㅔ".toCharArray();
 
     @Test
     public void writeKeyboardRandom() {
@@ -48,15 +44,19 @@ public class ExampleInstrumentedTest {
             x.attribute(null, "android:keyHeight", "60dp");
 
             for (int i = 0; i < 3; i++) {
-
-                x.startTag(null, "Row");
+                    x.startTag(null, "Row");
 
                 for (int j = 0; j < 10; j++) {
-
+                    ;
                     if (i == 1 && j == 9) break;
 
-                    char ch = '\u0000';
-                    if (!(i == 2 && j == 9 || i == 2 && j == 0)) ch = getRandomKey();
+                    Key key = new Key();
+                    if (!(i == 2 && j == 9 || i == 2 && j == 0))
+                        try {
+                            keySequence = getRandomKey(keySequence, key);
+                        }catch (Exception ex){
+                            continue;
+                        }
 
                     x.startTag(null, "Key");
 
@@ -72,12 +72,13 @@ public class ExampleInstrumentedTest {
                         x.attribute(null, "android:keyIcon", "@drawable/icon_delete_key");
                         x.attribute(null, "android:codes", -5 + "");
                     } else {
-                        x.attribute(null, "android:codes", (int) ch + "");
-                        x.attribute(null, "android:keyLabel", ch + "");
+                        x.attribute(null, "android:codes", (int) key.getKey() + "");
+                        x.attribute(null, "android:keyLabel", key.getKey() + "");
                     }
 
                     if (j == 0) x.attribute(null, "android:keyEdgeFlags", "left");
                     if (j == 9) x.attribute(null, "android:keyEdgeFlags", "right");
+
                     x.endTag(null, "Key");
                 }
                 x.endTag(null, "Row");
@@ -108,7 +109,7 @@ public class ExampleInstrumentedTest {
 
             x.startTag(null, "Key");
             x.attribute(null, "android:codes", "32");
-            x.attribute(null, "android:keyLabel", "___");
+            x.attribute(null, "android:keyLabel", "____");
             x.attribute(null, "android:keyWidth", "30%p");
             x.endTag(null, "Key");
 
@@ -144,14 +145,11 @@ public class ExampleInstrumentedTest {
         assertEquals(4, 2 + 2);
     }
 
-    private static char[] keySequence = "abcdefghijklmnopqrstuvwxyz.".toCharArray();
-//    private static char[] keySequence = "ㄱㄴㄷㄹㅁㅂㅅㅈㅊㅋㅌㅍㅎㅇㅏㅑㅓㅕㅗㅛㅜㅠㅡㅣㅐㅔ".toCharArray();
 
-    public static char getRandomKey() {
+    public static char[] getRandomKey(char[] keySequence, Key key) {
         int index = new Random().nextInt(keySequence.length);
-        char value = keySequence[index];
-        keySequence = removeTheElement(keySequence, index);
-        return value;
+        key.setKey(keySequence[index]);
+        return removeTheElement(keySequence, index);
     }
 
     public static char[] removeTheElement(char[] arr, int index) {
@@ -167,5 +165,17 @@ public class ExampleInstrumentedTest {
             anotherArray[k++] = arr[i];
         }
         return anotherArray;
+    }
+
+    public static class Key {
+        private char key;
+
+        public char getKey() {
+            return key;
+        }
+
+        public void setKey(char key) {
+            this.key = key;
+        }
     }
 }

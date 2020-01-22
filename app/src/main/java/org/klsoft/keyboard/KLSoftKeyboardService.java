@@ -157,8 +157,12 @@ public class KLSoftKeyboardService extends InputMethodService implements Keyboar
     }
 
     public Keyboard[] krKeyboard() {
-        Keyboard[] keyboards = new Keyboard[1];
+        Keyboard[] keyboards = new Keyboard[5];
         keyboards[0] = new Keyboard(this, R.xml.keyboard_kr);
+        keyboards[1] = new Keyboard(this, R.xml.keyboard_kr_random);
+        keyboards[2] = new Keyboard(this, R.xml.keyboard_kr_random_2);
+        keyboards[3] = new Keyboard(this, R.xml.keyboard_kr_random_3);
+        keyboards[4] = new Keyboard(this, R.xml.keyboard_kr_random_4);
 
         return keyboards;
     }
