@@ -25,7 +25,7 @@
         <Key android:codes="118" android:keyLabel="v" />
     </Row>
     <Row>
-        <Key android:keyWidth="14.199996%" android:keyIcon="@drawable/icon_shift_key" android:codes="-1" android:keyEdgeFlags="left" />
+        <Key android:keyWidth="10%" android:keyIcon="@drawable/icon_shift_key" android:codes="-1" android:keyEdgeFlags="left" />
         <Key android:codes="108" android:keyLabel="l" />
         <Key android:codes="46" android:keyLabel="." />
         <Key android:codes="110" android:keyLabel="n" />
@@ -34,7 +34,7 @@
         <Key android:codes="99" android:keyLabel="c" />
         <Key android:codes="107" android:keyLabel="k" />
         <Key android:codes="112" android:keyLabel="p" />
-        <Key android:keyWidth="17%" android:keyIcon="@drawable/icon_delete_key" android:codes="-5" android:keyEdgeFlags="right" />
+        <Key android:keyWidth="10%" android:keyIcon="@drawable/icon_delete_key" android:codes="-5" android:keyEdgeFlags="right" />
     </Row>
     <Row android:rowEdgeFlags="bottom">
         <Key android:codes="-52" android:keyLabel="..." android:keyWidth="15%p" android:keyEdgeFlags="left" />

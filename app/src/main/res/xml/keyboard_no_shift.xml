@@ -29,7 +29,7 @@
         <Key android:codes="93" android:keyEdgeFlags="right" android:keyLabel="]"/>
     </Row>
     <Row>
-        <Key android:codes="-1"  android:keyEdgeFlags="left" android:keyIcon="@drawable/icon_shift_key"/>
+        <Key android:codes="-1"  android:keyEdgeFlags="left" android:keyWidth="15%" android:keyIcon="@drawable/icon_shift_key"/>
         <Key android:codes="8482" android:keyLabel="™"/>
         <Key android:codes="174" android:keyLabel="®"/>
         <Key android:codes="169" android:keyLabel="©"/>
@@ -37,7 +37,7 @@
         <Key android:codes="92" android:keyLabel="\\"/>
         <Key android:codes="60" android:keyLabel="&lt;"/>
         <Key android:codes="62" android:keyLabel="&gt;"/>
-        <Key android:codes="-5"  android:keyEdgeFlags="right" android:keyWidth="20%" android:keyIcon="@drawable/icon_delete_key" />
+        <Key android:codes="-5"  android:keyEdgeFlags="right" android:keyWidth="15%" android:keyIcon="@drawable/icon_delete_key" />
     </Row>
     <Row android:rowEdgeFlags="bottom">
         <Key android:codes="-52" android:keyLabel="..."    android:keyWidth="15%p"  android:keyEdgeFlags="left"/>

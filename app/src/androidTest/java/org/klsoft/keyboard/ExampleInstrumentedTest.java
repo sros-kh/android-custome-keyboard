@@ -24,8 +24,9 @@ import static org.junit.Assert.assertEquals;
 public class ExampleInstrumentedTest {
 
 
-//    private char[] keySequence = "abcdefghijklmnopqrstuvwxyz.".toCharArray();
-    private char[] keySequence = "ㄱㄴㄷㄹㅁㅂㅅㅈㅊㅋㅌㅍㅎㅇㅏㅑㅓㅕㅗㅛㅜㅠㅡㅣㅐㅔ".toCharArray();
+    private char[] keySequence = "abcdefghijklmnopqrstuvwxyz.".toCharArray();
+//    private char[] keySequence = "ㄱㄴㄷㄹㅁㅂㅅㅈㅊㅋㅌㅍㅎㅇㅏㅑㅓㅕㅗㅛㅜㅠㅡㅣㅐㅔ".toCharArray();
+    boolean isEn = true;
 
     @Test
     public void writeKeyboardRandom() {
@@ -66,11 +67,11 @@ public class ExampleInstrumentedTest {
                     if (i == 1 && j == 0) x.attribute(null, "android:horizontalGap", "5%");
 
                     if (i == 2 && j == 0) {
-                        x.attribute(null, "android:keyWidth", "14.199996%");
+                        x.attribute(null, "android:keyWidth", isEn ? "10%" : "14.199996%");
                         x.attribute(null, "android:keyIcon", "@drawable/icon_shift_key");
                         x.attribute(null, "android:codes", -1 + "");
                     } else if (i == 2 && j == 9) {
-                        x.attribute(null, "android:keyWidth", "17%");
+                        x.attribute(null, "android:keyWidth", isEn ? "10%" : "17%");
                         x.attribute(null, "android:keyIcon", "@drawable/icon_delete_key");
                         x.attribute(null, "android:codes", -5 + "");
                     } else {

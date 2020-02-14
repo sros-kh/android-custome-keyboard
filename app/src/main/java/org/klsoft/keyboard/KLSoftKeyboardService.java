@@ -9,8 +9,12 @@ import android.view.View;
 import android.view.inputmethod.InputConnection;
 
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class KLSoftKeyboardService extends InputMethodService implements KeyboardView.OnKeyboardActionListener {
+
+    private static final Pattern ENG_PATTERN = Pattern.compile("[a-zA-Z]");
 
     private KeyboardView keyboardView;
     private Keyboard keyboardEn;
@@ -93,7 +97,24 @@ public class KLSoftKeyboardService extends InputMethodService implements Keyboar
         switch (primaryCode) {
 
             case Keyboard.KEYCODE_DELETE:
-                ic.deleteSurroundingText(1, 0);
+
+                if (isEn) {
+                    ic.deleteSurroundingText(1, 0);
+                }
+                else {
+
+                    CharSequence sequence = ic.getTextBeforeCursor(1, 0);
+
+                    if (!"".contentEquals(sequence)){
+                        sequence = EngKorTypingConvertor.convertKor2Eng(sequence.toString());
+                        sequence = sequence.subSequence(0, sequence.length() - 1);
+                        sequence = EngKorTypingConvertor.convertEng2Kor(sequence.toString());
+
+                        ic.deleteSurroundingText(1, 0);
+                        ic.commitText(sequence, 1);
+                    }
+
+                }
                 break;
 
             case Keyboard.KEYCODE_SHIFT:
@@ -139,9 +160,32 @@ public class KLSoftKeyboardService extends InputMethodService implements Keyboar
 
             default:
                 char code = (char) primaryCode;
-                if (Character.isLetter(code) && isCaps)
-                    code = Character.toUpperCase(code);
-                ic.commitText(String.valueOf(code), 1);
+                String c = "";
+
+                if (Character.isLetter(code)) {
+                    if(isEn){
+                        if (isCaps) code = Character.toUpperCase(code);
+                        c = String.valueOf(code);
+                    }else {
+                        CharSequence sequence = ic.getTextBeforeCursor(1, 0);
+                        Matcher mc = ENG_PATTERN.matcher(sequence);
+
+                        if(mc.find()){
+                            c = String.valueOf(code);
+
+                        }else {
+                            sequence = EngKorTypingConvertor.convertKor2Eng(sequence.toString());
+                            c = EngKorTypingConvertor.convertKor2Eng(String.valueOf(code));
+                            c = EngKorTypingConvertor.convertEng2Kor(sequence + c);
+                            ic.deleteSurroundingText(1, 0);
+                        }
+                    }
+
+                }else {
+                    c = String.valueOf(code);
+                }
+
+                ic.commitText(c, 1);
         }
     }
 
